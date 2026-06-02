@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bessel Functions - Complete Study Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .cover {
+            background: linear-gradient(135deg, #1a3a5c 0%, #2563eb 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        .cover h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .cover .subtitle {
+            font-size: 24px;
+            color: #bfdbfe;
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .chapter {
+            margin-bottom: 50px;
+        }
+        .chapter-header {
+            background: #1a3a5c;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        .chapter-header h2 {
+            margin: 0;
+            color: white;
+            font-size: 24px;
+        }
+        h2 {
+            color: #2563eb;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-left: 4px solid #2563eb;
+            padding-left: 12px;
+        }
+        h3 {
+            color: #0d9488;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .formula-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 3px;
+            font-family: 'Cambria Math', 'Courier New', monospace;
+            font-size: 15px;
+            overflow-x: auto;
+            line-height: 2;
+            letter-spacing: 0.3px;
+        }
+        .formula-box.teal {
+            background: #f0fdf4;
+            border-left-color: #0d9488;
+        }
+        .formula-box.gold {
+            background: #fff7ed;
+            border-left-color: #d97706;
+        }
+        /* Improved subscript and superscript styling */
+        sub {
+            font-size: 0.85em;
+            vertical-align: -0.25em;
+            font-weight: 500;
+        }
+        sup {
+            font-size: 0.85em;
+            vertical-align: 0.5em;
+            font-weight: 500;
+        }
+        .math {
+            font-family: 'Cambria Math', 'Courier New', monospace;
+            letter-spacing: 0.2px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th {
+            background: #0d9488;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 15px;
+            font-family: 'Cambria Math', 'Courier New', monospace;
+        }
+        table tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+        li {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .note {
+            background: #f1f5f9;
+            border-left: 4px solid #6b7280;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #6b7280;
+            border-radius: 3px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 12px;
+            background: #f9f9f9;
+        }
+        .code {
+            font-family: 'Cambria Math', 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover">
+            <h1>Bessel Functions</h1>
+            <div class="subtitle">Complete Study Guide</div>
+            <p style="margin: 30px 0; color: #93c5fd; font-size: 16px;">
+                Differential Equations · Series Solutions · Recurrence Relations · Integrals
+            </p>
+        </div>
+
+        <div class="content">
+            <!-- TABLE OF CONTENTS -->
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 30px;">
+                <h2 style="margin-top: 0;">Contents at a Glance</h2>
+                <table>
+                    <tr>
+                        <th style="width: 50px;">Ch.</th>
+                        <th>Topic</th>
+                        <th>Key Content</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Bessel's Equation & General Solution</td>
+                        <td>Definition, series formula, special values</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Recurrence Relations (Proofs)</td>
+                        <td>Six fundamental identities with derivations</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Half-Integer Bessel Functions</td>
+                        <td><span class="math">J<sub>1/2</sub>(x) = √(2/πx) sin(x)</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Integral Formulas</td>
+                        <td>Integration examples with step-by-step solutions</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Expressing Higher Orders</td>
+                        <td><span class="math">J<sub>n</sub> in terms of J<sub>0</sub>, J<sub>1</sub> via recurrence</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Product Identity Proof</td>
+                        <td><span class="math">d/dx[x J<sub>5</sub>(x) J<sub>6</sub>(x)] = x[J<sub>5</sub><sup>2</sup> - J<sub>6</sub><sup>2</sup>]</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CHAPTER 1 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Chapter 1: Bessel's Differential Equation</h2>
+                </div>
+                
+                <h3>The Bessel Equation</h3>
+                <div class="formula-box">
+<span class="math">x<sup>2</sup>y″ + xy′ + (x<sup>2</sup> - &nu;<sup>2</sup>)y = 0</span>
+
+where &nu; is a real, non-negative parameter (the order)
+                </div>
+                
+                <p>This is one of the most important second-order linear ODEs in mathematical physics. It appears when solving Laplace, Helmholtz, and wave equations in cylindrical or spherical coordinates.</p>
+                
+                <h3>General Solution</h3>
+                <div class="formula-box">
+<span class="math">y = A·J<sub>&nu;</sub>(x) + B·J<sub>-&nu;</sub>(x)</span>
+
+where A, B are arbitrary constants
+                </div>
+                
+                <div class="note">
+                    When &nu; is an integer, J<sub>-&nu;</sub> and J<sub>&nu;</sub> are linearly dependent, so a second solution (Neumann function Y<sub>&nu;</sub>) is needed instead.
+                </div>
+                
+                <h3>Series Definition (Frobenius Solution)</h3>
+                <div class="formula-box">
+<span class="math">J<sub>&nu;</sub>(x) = &sum;<sub>r=0</sub><sup>&infin;</sup> [(-1)<sup>r</sup> / (r! · &Gamma;(&nu;+r+1))] · (x/2)<sup>2r+&nu;</sup></span>
+
+where:
+- r! is the factorial
+- &Gamma;(&nu;+r+1) is the Gamma function
+- The series converges for all x ≥ 0
+                </div>
+                
+                <h3>Special Values</h3>
+                <table>
+                    <tr>
+                        <th>Function</th>
+                        <th>Value at x = 0</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>0</sub>(0)</span></td>
+                        <td>1</td>
+                        <td>The r=0 term gives (x/2)<sup>0</sup>/(0!·&Gamma;(1)) = 1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>&nu;</sub>(0) for &nu; > 0</span></td>
+                        <td>0</td>
+                        <td>Every term contains a positive power of x</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CHAPTER 2 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Chapter 2: Recurrence Relations</h2>
+                </div>
+                
+                <h3>The Six Fundamental Relations</h3>
+                <table>
+                    <tr>
+                        <th style="width: 40px;">#</th>
+                        <th>Relation</th>
+                        <th>Type</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><span class="math">d/dx[x<sup>&nu;</sup> J<sub>&nu;</sub>(x)] = x<sup>&nu;</sup> J<sub>&nu;-1</sub>(x)</span></td>
+                        <td>Derivative</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><span class="math">d/dx[x<sup>-&nu;</sup> J<sub>&nu;</sub>(x)] = -x<sup>-&nu;</sup> J<sub>&nu;+1</sub>(x)</span></td>
+                        <td>Derivative</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><span class="math">J'<sub>&nu;</sub>(x) = J<sub>&nu;-1</sub>(x) - (&nu;/x)·J<sub>&nu;</sub>(x)</span></td>
+                        <td>From Relation 1</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><span class="math">J'<sub>&nu;</sub>(x) = (&nu;/x)·J<sub>&nu;</sub>(x) - J<sub>&nu;+1</sub>(x)</span></td>
+                        <td>From Relation 2</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><span class="math">&int; x<sup>&nu;</sup> J<sub>&nu;-1</sub>(x) dx = x<sup>&nu;</sup> J<sub>&nu;</sub>(x) + C</span></td>
+                        <td>Integral</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><span class="math">&int; x<sup>-&nu;</sup> J<sub>&nu;+1</sub>(x) dx = -x<sup>-&nu;</sup> J<sub>&nu;</sub>(x) + C</span></td>
+                        <td>Integral</td>
+                    </tr>
+                </table>
+                
+                <h3>Key Observation</h3>
+                <p>Adding Relations 3 and 4 eliminates J'<sub>&nu;</sub> and gives a useful recurrence relation for the Bessel functions themselves. Subtracting them gives another important form used for computing higher-order functions.</p>
+            </div>
+
+            <!-- CHAPTER 3 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Chapter 3: Half-Integer Bessel Functions</h2>
+                </div>
+                
+                <h3>Elementary Forms</h3>
+                <p>For half-integer orders, Bessel functions reduce to elementary trigonometric functions:</p>
+                
+                <div class="formula-box teal">
+<span class="math">J<sub>1/2</sub>(x) = √(2/(π·x)) · sin(x)</span>
+                </div>
+                
+                <div class="formula-box teal">
+<span class="math">J<sub>-1/2</sub>(x) = √(2/(π·x)) · cos(x)</span>
+                </div>
+                
+                <p>These results are particularly important because they show that some Bessel functions are elementary functions. Higher half-integer orders can be expressed in terms of trigonometric and rational functions.</p>
+                
+                <h3>Higher Half-Integer Example</h3>
+                <div class="formula-box teal">
+<span class="math">J<sub>3/2</sub>(x) = √(2/(π·x)) · [sin(x)/x - cos(x)]</span>
+                </div>
+            </div>
+
+            <!-- CHAPTER 4 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Chapter 4: Integration Examples</h2>
+                </div>
+                
+                <h3>General Strategy</h3>
+                <p>To integrate <span class="math">&int; x<sup>m</sup> J<sub>n</sub>(x) dx</span>, use the following approach:</p>
+                <ul>
+                    <li>Rewrite <span class="math">x<sup>m</sup></span> as <span class="math">x<sup>n</sup> · x<sup>m-n</sup></span></li>
+                    <li>Use integration by parts with the integral relations</li>
+                    <li>Repeatedly reduce the power until matching a fundamental formula</li>
+                </ul>
+                
+                <h3>Example 1: <span class="math">&int; x<sup>5</sup> J<sub>2</sub>(x) dx</span></h3>
+                <div class="formula-box">
+<span class="math">Solution: x<sup>5</sup>J<sub>3</sub>(x) - 2x<sup>4</sup>J<sub>4</sub>(x) + C</span>
+
+Steps:
+1. Rewrite: <span class="math">&int; x<sup>5</sup> J<sub>2</sub>(x) dx = &int; x<sup>2</sup> · (x<sup>3</sup> J<sub>2</sub>) dx</span>
+2. Integration by parts with <span class="math">&int; x<sup>3</sup>J<sub>2</sub> dx = x<sup>3</sup>J<sub>3</sub>(x)</span>
+3. Result: <span class="math">x<sup>5</sup>J<sub>3</sub>(x) - 2&int; x<sup>4</sup>J<sub>3</sub>(x) dx</span>
+4. Apply Relation 5 again: <span class="math">2&int; x<sup>4</sup>J<sub>3</sub> dx = 2x<sup>4</sup>J<sub>4</sub>(x)</span>
+                </div>
+                
+                <h3>Example 2: <span class="math">&int; x<sup>6</sup> J<sub>3</sub>(x) dx</span></h3>
+                <div class="formula-box gold">
+<span class="math">Solution: x<sup>6</sup>J<sub>4</sub>(x) - 2x<sup>5</sup>J<sub>5</sub>(x) + C</span>
+                </div>
+                
+                <h3>Example 3: <span class="math">&int; J<sub>4</sub>(x)/x dx</span></h3>
+                <div class="formula-box gold">
+<span class="math">Solution: -x<sup>-1</sup>J<sub>3</sub>(x) - 2x<sup>-2</sup>J<sub>2</sub>(x) + C</span>
+
+Uses Relation 6 for negative powers
+                </div>
+            </div>
+
+            <!-- CHAPTER 5 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Chapter 5: Expressing Higher Orders in J<sub>0</sub> and J<sub>1</sub></h2>
+                </div>
+                
+                <h3>Recurrence Formula</h3>
+                <div class="formula-box">
+<span class="math">J<sub>&nu;+1</sub>(x) = (2&nu;/x)·J<sub>&nu;</sub>(x) - J<sub>&nu;-1</sub>(x)</span>
+
+This means any integer-order Bessel function can be expressed 
+using only J<sub>0</sub>(x) and J<sub>1</sub>(x)
+                </div>
+                
+                <h3>Examples</h3>
+                <table>
+                    <tr>
+                        <th>Function</th>
+                        <th>Expression</th>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>0</sub>(x)</span></td>
+                        <td>Base function</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>1</sub>(x)</span></td>
+                        <td>Base function</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>2</sub>(x)</span></td>
+                        <td><span class="math">(2/x)·J<sub>1</sub>(x) - J<sub>0</sub>(x)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>3</sub>(x)</span></td>
+                        <td><span class="math">[(8-x<sup>2</sup>)/x<sup>2</sup>]·J<sub>1</sub>(x) - (4/x)·J<sub>0</sub>(x)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>4</sub>(x)</span></td>
+                        <td><span class="math">[(48-12x<sup>2</sup>)/x<sup>3</sup>]·J<sub>1</sub>(x) - [(8-x<sup>2</sup>)/x<sup>2</sup>]·J<sub>0</sub>(x)</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CHAPTER 6 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Chapter 6: Product Identity Proof</h2>
+                </div>
+                
+                <h3>The Identity to Prove</h3>
+                <div class="formula-box">
+<span class="math">d/dx[x·J<sub>5</sub>(x)·J<sub>6</sub>(x)] = x·[J<sub>5</sub><sup>2</sup>(x) - J<sub>6</sub><sup>2</sup>(x)]</span>
+                </div>
+                
+                <h3>Key Insight</h3>
+                <p>Factor x as either <span class="math">x = x<sup>5</sup> · x<sup>-5</sup></span> or <span class="math">x = x<sup>6</sup> · x<sup>-6</sup></span>. This allows us to apply Relations 1 and 2 separately to each factor, leading to a clean cancellation.</p>
+                
+                <h3>Proof Sketch</h3>
+                <ul>
+                    <li><strong>Step 1:</strong> Rewrite as <span class="math">x<sup>-5</sup>J<sub>5</sub>(x) · x<sup>6</sup>J<sub>6</sub>(x)</span></li>
+                    <li><strong>Step 2:</strong> Apply product rule</li>
+                    <li><strong>Step 3:</strong> Use Relation 1 with &nu;=6: <span class="math">d/dx[x<sup>6</sup>J<sub>6</sub>] = x<sup>6</sup>J<sub>5</sub></span></li>
+                    <li><strong>Step 4:</strong> Use Relation 2 with &nu;=5: <span class="math">d/dx[x<sup>-5</sup>J<sub>5</sub>] = -x<sup>-5</sup>J<sub>6</sub></span></li>
+                    <li><strong>Step 5:</strong> Substitute and simplify to get <span class="math">x(J<sub>5</sub><sup>2</sup> - J<sub>6</sub><sup>2</sup>)</span></li>
+                </ul>
+            </div>
+
+            <!-- QUICK REFERENCE -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <h2>Quick Reference Summary</h2>
+                </div>
+                
+                <h3>Essential Formulas</h3>
+                <table>
+                    <tr>
+                        <th>Formula</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><span class="math">x<sup>2</sup>y″ + xy′ + (x<sup>2</sup>-&nu;<sup>2</sup>)y = 0</span></td>
+                        <td>Bessel's ODE</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">y = A·J<sub>&nu;</sub>(x) + B·J<sub>-&nu;</sub>(x)</span></td>
+                        <td>General solution</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>&nu;</sub>(x) = &sum; [(-1)<sup>r</sup>/(r!·&Gamma;(&nu;+r+1))] · (x/2)<sup>2r+&nu;</sup></span></td>
+                        <td>Series definition</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">d/dx[x<sup>&nu;</sup> J<sub>&nu;</sub>] = x<sup>&nu;</sup> J<sub>&nu;-1</sub></span></td>
+                        <td>Recurrence 1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>&nu;+1</sub> = (2&nu;/x)J<sub>&nu;</sub> - J<sub>&nu;-1</sub></span></td>
+                        <td>Recurrence 2</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math">J<sub>1/2</sub>(x) = √(2/(πx)) · sin(x)</span></td>
+                        <td>Half-integer</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            Bessel Functions Study Guide | Complete Reference with All Key Formulas and Examples
+        </div>
+    </div>
+</body>
+</html>
